@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: simple-pay
+
+  datasource:
+    drive-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:wallet-db}
+    username: ${DB_USER:mysql}
+    password: ${DB_PASSWORD:mysql}
+  jpa:
+    hibernate:
+      ddl-auto: create-drop

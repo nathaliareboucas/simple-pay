@@ -1,0 +1,18 @@
+services:
+  wallet-db:
+    container_name: wallet-db
+    image: mysql:latest
+    environment:
+      MYSQL_DATABASE: wallet-db
+      MYSQL_ROOT_PASSWORD: mysql
+      MYSQL_PASSWORD: mysql
+      MYSQL_USER: mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - simple-pay
+
+networks:
+  simple-pay:
+    driver: bridge
+
