@@ -4,9 +4,22 @@ spring:
 
   datasource:
     drive-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:wallet-db}
+    url: jdbc:mysql://${DB_HOST:localhost}:${DB_PORT:3306}/${DB_NAME:simplepay-db}
     username: ${DB_USER:mysql}
     password: ${DB_PASSWORD:mysql}
   jpa:
     hibernate:
-      ddl-auto: create-drop
+      ddl-auto: update
+
+  kafka:
+    bootstrap-servers: ${KAFKA_BROKER:localhost:9092}
+    producer:
+      value-serializer: org.springframework.kafka.support.serializer.JsonSerializer
+    consumer:
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      auto-offset-reset: latest
+      properties:
+        spring:
+          json:
+            trusted:
+              packages: "*"
